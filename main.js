@@ -1,10 +1,13 @@
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url)
+    const q = url.searchParams.get('q') ?? 'ワンワン'
+
     const response = await env.AI.run(
       'typesafe/jev',
       {
         state: {
-          animal_sound: 'ワンワン',
+          animal_sound: q,
           candidates: {
             dog: { name: '犬', sound_examples: ['ワンワン', 'キャンキャン'] },
             cat: { name: '猫', sound_examples: ['ニャー', 'ニャンニャン'] },
