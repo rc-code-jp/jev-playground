@@ -1,0 +1,13 @@
+[tools]
+node = "24.14.0"
+
+[tasks.install]
+description = "依存関係をインストール"
+run = "npm ci"
+sources = ["package.json", "package-lock.json"]
+outputs = ["node_modules/.package-lock.json"]
+
+[tasks.default]
+description = "ローカル開発サーバーを起動"
+depends = ["install"]
+run = "npm run dev"
